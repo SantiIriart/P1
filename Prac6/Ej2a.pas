@@ -1,4 +1,4 @@
-program Ej2;
+program Ej2a;
 const cent = '.';
 var letra, oracion, ant : Char;
 cont : Integer;
