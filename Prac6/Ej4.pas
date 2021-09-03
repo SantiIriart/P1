@@ -13,19 +13,22 @@ Writeln('Ingrese un numero');
 ReadLn(n);
 for i:=1 to n do
 begin
-    while not primo2 do
+while not primo2 do
+begin
+primo:=True;
+    cont := cont + 1;
+    for ind := 2 to cont - 1 do
+        if cont mod ind = 0 then
+        begin
+        primo := false;
+        end;
+    if primo then
     begin
-        cont := cont + 1;
-        for ind := 2 to cont - 1 do
-            if cont mod ind = 0 then
-            begin
-                primo:=False;
-            end;
-        if primo then
-            primo2:=True;
-        primo:=false
+        raiz:=sqrt(cont);
+        primo2:=True;
     end;
+end;
 primo2:=false;
-Write(raiz:0:2, ' ')
-end
+Write(raiz:0:2, ' ');
+end;
 end.
