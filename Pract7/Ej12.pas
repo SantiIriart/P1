@@ -11,9 +11,11 @@ begin
 end;
 begin
     Write('Ingrese los valores de m y n por pares, ingrese -1 para salir: ');
-    repeat
-        ReadLn(m, n);
+    ReadLn(m,n);
+    while (m <> cent) AND (n <> cent) do
+    begin
         WriteLn;
-        WriteLn(Multiplo(m, n))
-    until (m = cent) OR (n = cent)
+        WriteLn(Multiplo(m, n));
+        ReadLn(m, n)
+        end
 end.
