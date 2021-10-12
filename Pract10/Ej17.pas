@@ -22,6 +22,9 @@ TYPE
                 END;
 
     Wikipedia = ARRAY [1..CANT_ARTICULOS] OF TArticulo;
+VAR
+wiki : Wikipedia;
+
 
 function EsPosterior (f1, f2 : Tfecha) : boolean;
 var post : Boolean;
@@ -58,6 +61,23 @@ begin
             art := wiki[i]
 end;
 
+procedure imprimirArticulosMasRecientes (wiki:Wikipedia);
+var
+idioma : TIdioma;
+art: TArticulo;
 begin
-    
+idioma:=ay;
+ArticuloMasReciente(wiki, idioma, art);
+Write('Aymara', art.visitas, art.ultima_act);
+WriteLn();
+idioma:=eo;
+ArticuloMasReciente(wiki, idioma, art);
+Write('Esperanto', art.visitas, art.ultima_act);
+WriteLn();
+idioma:= es;
+ArticuloMasReciente(wiki, idioma, art);
+Write('Espaniol', art.visitas, art.ultima_act);
+WriteLn();
+end;
+begin
 end.
