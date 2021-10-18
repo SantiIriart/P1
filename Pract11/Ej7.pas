@@ -46,6 +46,11 @@ TYPE
                pirata: ARRAY [1..MAXPIRATAS] OF TipoPirata;     (* Contiene información de los piratas  *)
                tope: 0..MAXPIRATAS                              (* Indica cantidad de piratas *)
          END;
+
+     ConjuntoCIs = RECORD
+                     cedulas: ARRAY [1..MAXPIRATAS] OF TipoCI; (* Arreglo de cedulas *)
+                     tope: 0..MAXPIRATAS                       (* Cantidad de cedulas en el array *)
+                 END;
 FUNCTION dinero_obtenido_por_pirata (pirata: TipoCI; anio: Integer; b:Banda) : Integer;
 var i, j, acumulado : Integer;
 pirataActual : TipoPirata;
@@ -66,6 +71,38 @@ begin
     end;
     dinero_obtenido_por_pirata := acumulado;
 end;
+PROCEDURE hallar_ganadores (piratas:Banda; anio:INTEGER; VAR piratas_merecedores: ConjuntoCIs);
+var
+    i, mayor, tope, dinero : integer;
+    pirata : TipoPirata;
+    ultimosMayores : ConjuntoCIs;
+begin
+    mayor := 0;
+    tope := 0;
+    for i := 1 to piratas.tope do
+    begin
+        pirata := piratas.pirata[i];
+        if pirata.estaVivo then
+        begin
+            dinero := dinero_obtenido_por_pirata(pirata.CI, anio, piratas);
+            if dinero > mayor then
+            begin
+                mayor := dinero;
+                ultimosMayores.cedulas[1] := pirata.CI;
+                ultimosMayores.tope := 1;
+            end
+            else if dinero = mayor then
+            begin
+                ultimosMayores.tope := ultimosMayores.tope + 1;
+                ultimosMayores.cedulas[ultimosMayores.tope] := pirata.CI
+            end
+        end
+    end;
+    piratas_merecedores.tope := ultimosMayores.tope;
+    for i := 1 to ultimosMayores.tope do
+        piratas_merecedores.cedulas[i] := ultimosMayores.cedulas[i];
+end;
+
 
 begin
   
