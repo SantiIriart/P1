@@ -88,7 +88,8 @@ entonces se agrega la Posicion correspondiente a dicha casilla al final de la
 listaPos libres.
 }
 procedure Desocultar (f, c : integer; var t : Tablero; var libres : ListaPos);
-var pos : posicion;
+var
+pos : posicion;
 begin
   if EsPosicionValida(f, c) and (t[f, c].tipo = Libre) and t[f, c].oculto then
   begin
@@ -138,17 +139,17 @@ var
 begin
   if EsPosicionValida(f, c) then
   begin
-    pos.fila := f;
-    pos.columna := c;
+    new(libres);
+    libres^.pos.fila := f;
+    libres^.pos.columna := c;
     Desocultar(f, c, t, libres);
     while libres <> nil do
     begin
-      fActual := libres^.pos.fila;
-      cActual := libres^.pos.columna;
-      Write(fActual, cActual);
+      PrimeraPosicion(pos, libres);
+      fActual := pos.fila;
+      cActual := pos.columna;
       if t[fActual, cActual].minasAlrededor = 0 then
         DesocultarAdyacentes(fActual, cActual, t, libres);
-      libres := libres^.sig;
     end
   end
 end;

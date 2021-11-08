@@ -1,1 +1,2 @@
+m minas/m2.inp
 d 5 5

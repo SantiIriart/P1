@@ -88,3 +88,5 @@ do
 done
 
 echo Test finalizado: aciertos:$aciertos, errores:$errores
+
+read -rsp $'Press escape to continue...\n' -d $'\e'
