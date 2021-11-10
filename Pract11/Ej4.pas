@@ -27,13 +27,14 @@ discr : Real;
     end;
 procedure InsertarDatos(VAR a,b,c : real);
 begin
-WriteLn('Ingrese los coeficientes ');
-read(a);
-read(b);
-read(c)
+    WriteLn('Ingrese los coeficientes ');
+    read(a);
+    read(b);
+    read(c)
 end;
+
 begin
-InsertarDatos(a,b,c);
-Raices(a,b,c,r);
+    InsertarDatos(a,b,c);
+    Raices(a,b,c,r);
 
 end.

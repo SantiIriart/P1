@@ -118,7 +118,7 @@ begin
       begin
         fActual := f + j;
         cActual := c + k; 
-        if EsPosicionValida(fActual, cActual) then
+        if EsPosicionValida(fActual, cActual) and t[f, c].oculto then
         Desocultar(fActual, cActual, t, libres);
       end
 end;
