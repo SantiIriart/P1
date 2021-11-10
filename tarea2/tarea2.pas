@@ -118,7 +118,7 @@ begin
       begin
         fActual := f + j;
         cActual := c + k; 
-        if EsPosicionValida(fActual, cActual) and t[f, c].oculto then
+        if EsPosicionValida(fActual, cActual) then
         Desocultar(fActual, cActual, t, libres);
       end
 end;
@@ -148,7 +148,7 @@ begin
       PrimeraPosicion(pos, libres);
       fActual := pos.fila;
       cActual := pos.columna;
-      if t[fActual, cActual].minasAlrededor = 0 then
+      if (t[fActual, cActual].minasAlrededor = 0) AND (t[fActual, cActual].tipo = Libre) then
         DesocultarAdyacentes(fActual, cActual, t, libres);
     end
   end
@@ -165,7 +165,7 @@ begin
   res:=True;
   for i := 1 to CANT_FIL do
     for j := 1 to CANT_COL do
-      if not ((t[i,j].tipo = Libre) AND (t[i,j].oculto)) then
+      if ((t[i,j].tipo = Libre) AND (t[i,j].oculto)) then
         res:=False;
   EsTableroCompleto:=res;
 end;
